@@ -1,3 +1,7 @@
+const nome = "Iniciando.dev";
+
+console.log(nome.includes('dev'));
+
 console.log('Iniciando.dev'.toUpperCase())
 
 console.log("Iniciando.dev".toLowerCase());
