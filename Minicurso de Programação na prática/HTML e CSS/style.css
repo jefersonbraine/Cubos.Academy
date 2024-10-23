@@ -51,6 +51,18 @@ details {
     padding-bottom: 15px;
     font-weight: 300;
 
+    && button {
+        width: 85%;
+        margin: 0 auto;
+        display: block;
+        margin-top: 5px;
+        padding: 5px;
+        background-color: var(--secondary);
+        color: var(--text-color);
+        border: 1px solid var(--border-primary);
+        border-radius: 8px;
+    }
+
     && summary {
         cursor: pointer;
         padding: 5px 10px;
@@ -77,11 +89,16 @@ details.suggestion {
     
     && summary {
         background-color: var(--primary);
+        border-radius: 4px;
     }
 
     && button {
+        cursor: pointer;
         
-        
+
+        &&:hover {
+            background-color: #1b1b1b;
+        }
         
        
     }
@@ -89,7 +106,7 @@ details.suggestion {
 }
 
 details.historic {
-    
+    border-radius: 4px;
 }
 
 
@@ -98,16 +115,77 @@ details.historic {
     height: 100%;
     display: flex;
     padding: 0 150px;
-    justify-content: center;
     flex-direction: column;
-    
+
+}
+
+.box-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+    height: 100%;
+
+    && span {
+        font-weight: 500;
+    }
+
+    && h1 {
+        font-size: 3rem;
+        font-weight: 600;
+
+        && span {
+            color: var(--primary);
+        }
+    }
+
+    && p {
+        font-weight: 300;
+    }
+}
+
+.box-input {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    && textarea {
+        min-height: 60px;
+        height: auto;
+        resize: vertical;
+        padding: 8px;
+        background-color: transparent;
+        border: 1px solid var(--border-primary);
+        color: var(--text-color);
+        border-radius: 4px;
+        outline: none;
+    }
+
+    && button {
+        cursor: pointer;
+        width: 170px;
+        margin-left: auto;
+        padding: 8px;
+        border-radius: 4px;
+        background-color: var(--primary);
+        color: var(--text-color);
+    }
+
 }
 
 
-
-
-
-.footer {
+.box-footer {
+    width: 100%;
+    padding: 20px;
     
+    && p {
+        text-align: center;
+        font-weight: 500;
+    }
+        && span {
+            color: var(--primary);
+        }
     
 }
