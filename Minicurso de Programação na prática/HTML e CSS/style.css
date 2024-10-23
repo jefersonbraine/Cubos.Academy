@@ -39,6 +39,75 @@ body {
 
 .sidebar {
     background-color: var(--foreground-primary);
+    width: 400px;
+    height: 100%;
+    border-right: 1px solid var(--border-primary);
+    padding: 30px 0;
+}
+
+details {
+    width: 100%;
+    max-height: 600px;
+    padding-bottom: 15px;
+    font-weight: 300;
+
+    && summary {
+        cursor: pointer;
+        padding: 5px 10px;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+    }
+
+        && summary::after {
+            content: "△";
+            transition: rotate 200ms ease-in;
+        }
+}
+
+details[open] summary::after {
+    content: "△";
+    transition: rotate 200ms ease-out;
+    rotate: 180deg;
+}
+
+details.suggestion {
+    border-bottom: 1px solid var(--border-primary);
+    
+    
+    && summary {
+        background-color: var(--primary);
+    }
+
+    && button {
+        
+        
+        
+       
+    }
+
+}
+
+details.historic {
+    
 }
 
 
+.content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0 150px;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+
+
+
+
+.footer {
+    
+    
+}
