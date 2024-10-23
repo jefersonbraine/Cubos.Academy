@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teach.me</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <div class="container">
 
-        <sidebar>
+        <sidebar class="sidebar">
             <details open>
                 <summary>Tópicos Sugeridos</summary>
                 <button>HTML</button>
@@ -39,15 +42,18 @@
                 </p>
             </div>
             <div>
-                <input type="text" name="insert" id="inserti" placeholder="Insira o tema que deseja estudar">
+                <textarea placeholder="Insira o tema que deseja estudar..."></textarea>
+                <button type="submit">Enviar pergunta</button>
             </div>
         </div>
+
+        <footer>
+            <p><strong>teach<span class="colorMe">.me</strong></span></p>
+        </footer>
     
     </div>
 
-    <footer>
-        <p><strong>teach<span class="colorMe">.me</strong></span></p>
-    </footer>
+    
 
 
     <script src="script.js"></script>

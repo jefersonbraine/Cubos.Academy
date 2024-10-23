@@ -1,7 +1,44 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
+:root {
+    --background-primary: #121113;
+    --foreground-primary: #1a191b;
+    --foreground-secondary: #21121d;
+    --border-primary: #3c393f;
+    --border-secondary: #692955;
+    --primary: #d6489f;
+    --secondary: #232225;
+    --text-color: #eeeef0;
+    --text-color-question: #b5b2bc;
+    --text-color-disabled: #6f6d78;
 }
 
-.colorMe {
-    color: rgb(163, 23, 163);
+
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-style: normal;
+    font-size: 100%;
+    
 }
+
+
+body {
+    background-color: var(--background-primary);
+    color: var(--text-color);
+    
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    background-color: var(--foreground-primary);
+}
+
+
