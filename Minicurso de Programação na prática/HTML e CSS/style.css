@@ -189,3 +189,47 @@ details.historic {
         }
     
 }
+.box-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    padding-top: 30px;
+
+}
+
+.box-chat>h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+
+
+    && span {
+        color: var(--primary);
+    }
+}
+
+.question {
+    width: 100%;
+    background-color: var(--foreground-primary);
+    padding: 20px 15px;
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+
+    && h2 {
+        display: flex;
+        gap: 8px;
+        font-size: 1.5rem;
+        align-items: center;
+        font-weight: 500;
+        margin-bottom: 15px;
+        color: var(--text-color-question);
+    }
+}
+
+.answer {
+    width: 100%;
+    background-color: var(--foreground-primary);
+    padding: 20px 15px;
+    border: 1px solid var(--border-primary);
+    border-radius: 4px;
+}
