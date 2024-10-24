@@ -1,45 +1,43 @@
+import { ItemSuggestion } from "./components/ItemSuggestion";
 
-function App() { 
-
+function App() {
   return (
     <div className="container">
-
       <div className="sidebar">
         <details open className="suggestion">
           <summary>Tópicos Sugeridos</summary>
-          <button>HTML</button>
-          <button>CSS</button>
-          <button>JavaScript</button>
-          <button>TypeScript</button>
+          <ItemSuggestion title="HTML" />
+          <ItemSuggestion title="CSS" />
+          <ItemSuggestion title="JavaScript" />
+          <ItemSuggestion title="TypeScript" />
         </details>
 
         <details open className="historic">
           <summary>Histórico</summary>
-          <button>Python</button>
-          <button>Assembly</button>
+          <ItemSuggestion title="Python" />
+          <ItemSuggestion title="Assembly" />
         </details>
       </div>
-
 
       <div className="content">
         <div className="box-home">
           <span>Olá, eu sou o</span>
-          <h1>teach<span>.me</span></h1>
-            <p>
-              Estou aqui para te ajudar nos seus estudos.
-              Selecione um dos tópicos sugeridos ao lado ou 
-              digite um tópico que deseja estudar para
-              começarmos
-            </p>
-              </div>
+          <h1>
+            teach<span>.me</span>
+          </h1>
+          <p>
+            Estou aqui para te ajudar nos seus estudos. Selecione um dos tópicos
+            sugeridos ao lado ou digite um tópico que deseja estudar para
+            começarmos
+          </p>
+        </div>
 
-              <div className="box-input">
-                <textarea placeholder="Insira o tema que deseja estudar..."></textarea>
-                <button type="submit">Enviar pergunta</button>
-              </div>
+        <div className="box-input">
+          <textarea placeholder="Insira o tema que deseja estudar..."></textarea>
+          <button type="submit">Enviar pergunta</button>
+        </div>
 
-
-              {/* <div className="box-chat">
+        {/* <div className="box-chat">
                 <h1>Você está estudando sobre <span>HTML</span></h1>
 
                 <div className="question">
@@ -76,16 +74,14 @@ function App() {
                 </div>
               </div> */}
 
-
-
-
-              <footer className="box-footer">
-                <p>teach<span>.me</span></p>
-              </footer>
-            </div>
-        </div>
-      
-  )
+        <footer className="box-footer">
+          <p>
+            teach<span>.me</span>
+          </p>
+        </footer>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;

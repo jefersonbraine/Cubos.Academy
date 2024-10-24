@@ -107,6 +107,17 @@ details.suggestion {
 
 details.historic {
   border-radius: 4px;
+
+  && button {
+      cursor: pointer;
+  
+  
+      &&:hover {
+        background-color: #1b1b1b;
+      }
+  
+  
+    }
 }
 
 
