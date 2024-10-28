@@ -3,7 +3,13 @@ import { ItemSuggestion } from "./components/ItemSuggestion";
 
 type ProgressType = "pending" | "started" | "done";
 function App() {
-  const [progress, setProgress] = useState<ProgressType>('started')
+  const [progress, setProgress] = useState<ProgressType>('pending')
+
+  function handleSubmitChat() {
+    if (progress === "pending") {
+      setProgress("started")
+    }
+  }
   
   return (
     <div className="container">
@@ -85,7 +91,7 @@ function App() {
 
         <div className="box-input">
           <textarea placeholder="Insira o tema que deseja estudar..."></textarea>
-          <button type="submit">Enviar pergunta</button>
+          <button onClick={handleSubmitChat}>Enviar pergunta</button>
         </div>
 
         <footer className="box-footer">
