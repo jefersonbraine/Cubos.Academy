@@ -2,6 +2,9 @@ import { useState } from "react";
 import { ItemSuggestion } from "./components/ItemSuggestion";
 
 type ProgressType = "pending" | "started" | "done";
+
+const chat = ['Tema', 'Pergunta', 'Resposta', 'Feedback']
+
 function App() {
   const [progress, setProgress] = useState<ProgressType>('pending')
   const [textarea, setTextarea] = useState<string>('')
@@ -49,45 +52,53 @@ function App() {
 
         {progress !== "pending" && (
           <div className="box-chat">
-            <h1>
-              Você está estudando sobre <span>HTML</span>
-            </h1>
+            {chat[0] && (
+              <h1>
+                Você está estudando sobre <span>HTML</span>
+              </h1>
+            )}
 
-            <div className="question">
-              <h2>
-                <img src="./assets/question.svg" />
-                Pergunta
-              </h2>
-              <p>
-                claro aqui esta apergunta simulada como você descreveria o seu
-                conhecimento e experiência com HTML? Você poderia fornecer um
-                exemplo de um projeto em que utilizou HTML e como isso impactou
-                positivamente o resultado final? Aguardo a sua resposta para
-                poder fornecer um feedback!
-              </p>
-            </div>
-
-            <div className="answer">
-              <h2>Sua resposta</h2>
-              <p>
-                Tenho um conhecimento sólido em HTML, já construi vários sites
-              </p>
-            </div>
-
-            <div className="feedback">
-              <h2>
-                Feedback teach<span>.me</span>
-              </h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                porro voluptate consectetur, minus, illo quisquam ipsam fugit
-                labore rerum dicta quo aspernatur amet beatae reprehenderit! Eos
-                voluptas maxime alias natus.
-              </p>
-              <div className="actions">
-                <button>Estudar novo tópico</button>
+            {chat[1] && (
+              <div className="question">
+                <h2>
+                  <img src="./assets/question.svg" />
+                  Pergunta
+                </h2>
+                <p>
+                  claro aqui esta apergunta simulada como você descreveria o seu
+                  conhecimento e experiência com HTML? Você poderia fornecer um
+                  exemplo de um projeto em que utilizou HTML e como isso
+                  impactou positivamente o resultado final? Aguardo a sua
+                  resposta para poder fornecer um feedback!
+                </p>
               </div>
-            </div>
+            )}
+
+            {chat[2] && (
+              <div className="answer">
+                <h2>Sua resposta</h2>
+                <p>
+                  Tenho um conhecimento sólido em HTML, já construi vários sites
+                </p>
+              </div>
+            )}
+
+            {chat[3] && (
+              <div className="feedback">
+                <h2>
+                  Feedback teach<span>.me</span>
+                </h2>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
+                  porro voluptate consectetur, minus, illo quisquam ipsam fugit
+                  labore rerum dicta quo aspernatur amet beatae reprehenderit!
+                  Eos voluptas maxime alias natus.
+                </p>
+                <div className="actions">
+                  <button>Estudar novo tópico</button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
