@@ -6,13 +6,13 @@ type Message = {
 }
 
 const openai = new OpenAI({
-    apiKey: '',
+    apiKey: 'API_KEY',
     dangerouslyAllowBrowser: true
 })
 
 export async function sendMessage(messages: Message[]) {
     const response = await openai.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: "gpt-3.5-turbo",
         messages: messages.map(message => (
             { role: message.role, content: message.content }
         ))

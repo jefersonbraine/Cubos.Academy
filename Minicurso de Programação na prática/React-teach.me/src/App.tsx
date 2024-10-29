@@ -165,14 +165,14 @@ function App() {
             {
               loading && (
                 <ThreeDots
-                  visible={true}
-                  height="30"
-                  width="60"
-                  color="#d6409f"
-                  radius="9"
-                  ariaLabel="three-dots-loading"
-                  wrapperStyle={{ margin: "30px auto" }}
-                />
+                visible={true}
+                height="30"
+                width="60"
+                color="#d6409f"
+                radius="9"
+                ariaLabel="three-dots-loading"
+                wrapperStyle={{ margin: "30px auto" }}
+              />
             )}
           </div>
         )}
