@@ -3,19 +3,28 @@ import { ItemSuggestion } from "./components/ItemSuggestion";
 
 type ProgressType = "pending" | "started" | "done";
 
-const chat = ['Tema', 'Pergunta', 'Resposta', 'Feedback']
 
 function App() {
   const [progress, setProgress] = useState<ProgressType>('pending')
   const [textarea, setTextarea] = useState<string>('')
+  const [chat, setChat] = useState<string[]>([])
 
   function handleSubmitChat() {
+    if (!textarea) {
+      return
+    }
+
     if (progress === "pending") {
+      setChat(text => [...text, textarea])
+      setChat((text) => [...text, "aqui será a pergunta gerada por uma ia"]);
+    
+      
       setProgress("started")
     }
   }
 
-  console.log(textarea)
+
+  console.log(chat)
   
   return (
     <div className="container">
@@ -54,7 +63,7 @@ function App() {
           <div className="box-chat">
             {chat[0] && (
               <h1>
-                Você está estudando sobre <span>HTML</span>
+                Você está estudando sobre <span>{chat[0]}</span>
               </h1>
             )}
 
@@ -64,22 +73,14 @@ function App() {
                   <img src="./assets/question.svg" />
                   Pergunta
                 </h2>
-                <p>
-                  claro aqui esta apergunta simulada como você descreveria o seu
-                  conhecimento e experiência com HTML? Você poderia fornecer um
-                  exemplo de um projeto em que utilizou HTML e como isso
-                  impactou positivamente o resultado final? Aguardo a sua
-                  resposta para poder fornecer um feedback!
-                </p>
+                <p>{chat[1]}</p>
               </div>
             )}
 
             {chat[2] && (
               <div className="answer">
                 <h2>Sua resposta</h2>
-                <p>
-                  Tenho um conhecimento sólido em HTML, já construi vários sites
-                </p>
+                <p>{chat[2]}</p>
               </div>
             )}
 
@@ -88,12 +89,7 @@ function App() {
                 <h2>
                   Feedback teach<span>.me</span>
                 </h2>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
-                  porro voluptate consectetur, minus, illo quisquam ipsam fugit
-                  labore rerum dicta quo aspernatur amet beatae reprehenderit!
-                  Eos voluptas maxime alias natus.
-                </p>
+                <p>{chat[3]}</p>
                 <div className="actions">
                   <button>Estudar novo tópico</button>
                 </div>
