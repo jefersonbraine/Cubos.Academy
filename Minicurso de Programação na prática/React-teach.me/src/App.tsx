@@ -4,11 +4,16 @@ import { getHistoric, setHistoric } from "./storage/historic";
 
 type ProgressType = "pending" | "started" | "done";
 
+type Message = {
+  role: "user" | "assistant";
+  content: string;
+};
+
 
 function App() {
   const [progress, setProgress] = useState<ProgressType>('pending')
   const [textarea, setTextarea] = useState<string>('')
-  const [chat, setChat] = useState<string[]>([])
+  const [chat, setChat] = useState<Message[]>([])
 
   function resetChat(){
     setProgress('pending')
@@ -25,16 +30,45 @@ function App() {
 
     if (progress === "pending") {
       setHistoric(message)
-      setChat(text => [...text, message])
-      setChat((text) => [...text, "aqui será a pergunta gerada por uma ia"]);
+      const messageGPT: Message = {
+        role: 'user',
+        content: message
+      } 
+
+      
+      setChat(text => [...text, messageGPT])
+
+      // fazer a chamada pra api da openAI
+
+      setChat((text) => [
+        ...text,
+        {
+          role: "assistant",
+          content: "aqui será a pergunta gerada por uma ia",
+        },
+      ]);
     
       
       setProgress("started")
       return
     }
+
+    const responseUser: Message = {
+      role: "user",
+      content: message,
+    };
     
-      setChat(text => [...text, message]);
-      setChat(text => [...text, "aqui será o feedback gerado por uma IA"]);
+    setChat(text => [...text, responseUser]);
+    
+    // chamada da api
+
+    setChat((text) => [
+      ...text,
+      {
+        role: "assistant",
+        content: "aqui será o feedback gerado por uma IA"
+      },
+    ]);
 
 
     setProgress("done")
@@ -94,7 +128,7 @@ function App() {
           <div className="box-chat">
             {chat[0] && (
               <h1>
-                Você está estudando sobre <span>{chat[0]}</span>
+                Você está estudando sobre <span>{chat[0].content}</span>
               </h1>
             )}
 
@@ -104,14 +138,14 @@ function App() {
                   <img src="./assets/question.svg" />
                   Pergunta
                 </h2>
-                <p>{chat[1]}</p>
+                <p>{chat[1].content}</p>
               </div>
             )}
 
             {chat[2] && (
               <div className="answer">
                 <h2>Sua resposta</h2>
-                <p>{chat[2]}</p>
+                <p>{chat[2].content}</p>
               </div>
             )}
 
@@ -120,7 +154,7 @@ function App() {
                 <h2>
                   Feedback teach<span>.me</span>
                 </h2>
-                <p>{chat[3]}</p>
+                <p>{chat[3].content}</p>
                 <div className="actions">
                   <button onClick={resetChat}>Estudar novo tópico</button>
                 </div>
