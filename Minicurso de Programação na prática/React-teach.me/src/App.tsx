@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ItemSuggestion } from "./components/ItemSuggestion";
 import { getHistoric, setHistoric } from "./storage/historic";
 import { sendMessage } from "./api/openai";
+import { ThreeDots } from "react-loader-spinner";
 
 type ProgressType = "pending" | "started" | "done";
 
@@ -17,6 +18,8 @@ function App() {
   const [progress, setProgress] = useState<ProgressType>('pending')
   const [textarea, setTextarea] = useState<string>('')
   const [chat, setChat] = useState<Message[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
+
 
   function resetChat(){
     setProgress('pending')
@@ -33,6 +36,7 @@ function App() {
 
     if (progress === "pending") {
       setHistoric(message)
+      setProgress("started");
 
       const prompt = `gere uma pergunte onde simule uma entrevista de emprego sobre ${message},
       após gerar a perguinta, enviarei a resposta e voc6e me dará um feedback.
@@ -47,9 +51,8 @@ function App() {
 
       
       setChat(text => [...text, messageGPT])
-
+      setLoading(true)
       const questionGPT: Message = await sendMessage([messageGPT])
-
       setChat((text) => [
         ...text,
         {
@@ -57,9 +60,7 @@ function App() {
           content: questionGPT.content,
         },
       ]);
-    
-      
-      setProgress("started")
+      setLoading(false)
       return
     }
 
@@ -67,12 +68,10 @@ function App() {
       role: "user",
       content: message,
     };
-    
-    
-    const feedbackGPT: Message = await sendMessage([...chat, responseUser]);
 
     setChat((text) => [...text, responseUser]);
-  
+    setLoading(true);
+    const feedbackGPT: Message = await sendMessage([...chat, responseUser]);
     setChat(text => [
       ...text,
       {
@@ -80,15 +79,11 @@ function App() {
         content: feedbackGPT.content
       },
     ]);
-
-
+    setLoading(false);
     setProgress("done")
 
 
   }
-
-
-
   
   return (
     <div className="container">
@@ -109,14 +104,9 @@ function App() {
 
         <details open className="historic">
           <summary>Histórico</summary>
-          {
-            getHistoric().map(item => (
-            <ItemSuggestion
-              title={item}
-              onClick={() => setTextarea(item)}
-            />
+          {getHistoric().map((item) => (
+            <ItemSuggestion title={item} onClick={() => setTextarea(item)} />
           ))}
-
         </details>
       </div>
 
@@ -170,6 +160,19 @@ function App() {
                   <button onClick={resetChat}>Estudar novo tópico</button>
                 </div>
               </div>
+            )}
+
+            {
+              loading && (
+                <ThreeDots
+                  visible={true}
+                  height="30"
+                  width="60"
+                  color="#d6409f"
+                  radius="9"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle={{ margin: "30px auto" }}
+                />
             )}
           </div>
         )}
