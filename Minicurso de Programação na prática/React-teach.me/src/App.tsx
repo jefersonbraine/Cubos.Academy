@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { ItemSuggestion } from "./components/ItemSuggestion";
 import { getHistoric, setHistoric } from "./storage/historic";
+import { sendMessage } from "./api/openai";
 
 type ProgressType = "pending" | "started" | "done";
 
 type Message = {
   role: "user" | "assistant";
   content: string;
+  subject?: string
 };
+
 
 
 function App() {
@@ -20,7 +23,7 @@ function App() {
     setChat([])
   } 
 
-  function handleSubmitChat() {
+  async function handleSubmitChat() {
     if (!textarea) {
       return
     }
@@ -30,21 +33,28 @@ function App() {
 
     if (progress === "pending") {
       setHistoric(message)
+
+      const prompt = `gere uma pergunte onde simule uma entrevista de emprego sobre ${message},
+      após gerar a perguinta, enviarei a resposta e voc6e me dará um feedback.
+      O feedback precisa ser simples e objetivo e corresponder fielmente a resposta enviada.
+      Após o feedback não existirá mais interação.`
+
       const messageGPT: Message = {
         role: 'user',
-        content: message
+        content: prompt,
+        subject: message
       } 
 
       
       setChat(text => [...text, messageGPT])
 
-      // fazer a chamada pra api da openAI
+      const questionGPT: Message = await sendMessage([messageGPT])
 
       setChat((text) => [
         ...text,
         {
           role: "assistant",
-          content: "aqui será a pergunta gerada por uma ia",
+          content: questionGPT.content,
         },
       ]);
     
@@ -58,15 +68,16 @@ function App() {
       content: message,
     };
     
-    setChat(text => [...text, responseUser]);
     
-    // chamada da api
+    const feedbackGPT: Message = await sendMessage([...chat, responseUser]);
 
-    setChat((text) => [
+    setChat((text) => [...text, responseUser]);
+  
+    setChat(text => [
       ...text,
       {
         role: "assistant",
-        content: "aqui será o feedback gerado por uma IA"
+        content: feedbackGPT.content
       },
     ]);
 
@@ -128,7 +139,7 @@ function App() {
           <div className="box-chat">
             {chat[0] && (
               <h1>
-                Você está estudando sobre <span>{chat[0].content}</span>
+                Você está estudando sobre <span>{chat[0].subject}</span>
               </h1>
             )}
 
