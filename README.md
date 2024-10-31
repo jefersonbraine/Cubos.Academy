@@ -9,8 +9,8 @@ oferente um feedback sobre a resposta.
 ### Tecnologias Usadas
 
 #### Iniciado com
--HTML
--CSS
+- HTML
+- CSS
 
 #### Finalizdo com
 ---React
