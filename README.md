@@ -13,13 +13,13 @@ oferente um feedback sobre a resposta.
 - CSS
 
 #### Finalizdo com
----React
+--- React
 
 ####API
-OpenAI
+- OpenAI
 
 ####Bibliotecas
-TreeDots
+- TreeDots
 
 
-##Como utilizar
+## Como utilizar
