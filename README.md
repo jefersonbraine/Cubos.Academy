@@ -23,3 +23,10 @@ oferente um feedback sobre a resposta.
 
 
 ## Como utilizar
+Ao baixar o arquivo desse repositório, realizar os seguintes passo:
+- Primeiro: seguir o seguinte caminho: SRC -> API -> openai.ts, no campo 'API_KEY' inserir key do openAI que pode ser criada através do seguinte [link](https://platform.openai.com/settings/organization/api-keys).
+  
+- Segundo: Com o projeto aberto no VSCODE ou IDE de sua escolha inserir no terminal o seguinte comando `npm run dev` e seguir o link que será fornecido.
+
+- Terceiro: Inserir tema, responder a pergunta que a IA irá lhe passar e esperar pelo feedback.
+  
